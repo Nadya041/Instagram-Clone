@@ -1,0 +1,28 @@
+﻿@model raupjc_projekt.Models.AlbumViewModels.IndexViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Explore other users albums</h2>
+
+<div>
+    @foreach (var album in Model.Albums)
+    {
+        //todo
+        //Html.RenderPartial("~/Views/Todo/PartialView.cshtml", todoItem);
+
+        <a href="@Url.Action("ShowAlbumPhotos","Explore",@album)">
+            <img src="@Url.Content(album.ThumbnailImage)" alt="Thumbnail" height="100" width="150" />
+        </a>
+        <br />
+        <b>@album.Name</b>
+        <br />
+        <t>Created on: @album.DateCreated</t>
+        <br />
+        <a class="btn btn-primary" href='@Url.Action("SubscribeToUser", "Explore", new { ownerId = album.Owner.Id})' role="button">Subscribe</a>
+        <b>to @album.Owner.Username</b>
+        <br><br />
+
+    }
+</div>
